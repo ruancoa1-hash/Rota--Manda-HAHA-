@@ -1,9 +1,13 @@
 services:
   - type: web
-    name: bot-whatsapp-painel
+    name: rota-manda-haha
     runtime: docker
-    rootDir: bot-whatsapp-cliente-main
-    plan: 8c-32g
+    branch: main
+    dockerfilePath: ./bot-whatsapp-cliente-main/Dockerfile
+    dockerContext: ./bot-whatsapp-cliente-main
+    # Configuração inicial paga. Confira o custo antes de criar o serviço.
+    plan: 1c-2g
+    autoDeployTrigger: commit
     healthCheckPath: /api/ping
     envVars:
       - key: NODE_ENV
@@ -12,14 +16,16 @@ services:
         value: /data
       - key: PORT
         value: "10000"
+      - key: TZ
+        value: America/Sao_Paulo
       - key: OCR_GLOBAL_CONCURRENCY
-        value: "8"
+        value: "1"
       - key: OCR_TURBO_MODE
         value: "true"
       - key: OCR_VARIANT_CONCURRENCY
-        value: "4"
+        value: "2"
       - key: UV_THREADPOOL_SIZE
-        value: "16"
+        value: "4"
       - key: BOT_PERFORMANCE_PROFILE
         value: high
       - key: BOT_EAGER_WORKERS
@@ -30,8 +36,6 @@ services:
         sync: false
       - key: PANEL_SESSION_SECRET
         generateValue: true
-      - key: KEEP_ALIVE_URL
-        sync: false
       - key: KEEP_ALIVE_WHEN_MONITORING
         value: "false"
       - key: DAILY_SESSION_RESET_ENABLED

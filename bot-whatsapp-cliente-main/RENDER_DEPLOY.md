@@ -1,5 +1,9 @@
 # Deploy no Render
 
+Para instalar o novo repositório `ruancoa1-hash/Rota--Manda-HAHA-`, siga primeiro
+o [guia de instalação do zero e recuperação de dados](docs/NOVO_DEPLOY_RENDER.md).
+Ele cobre o Blueprint atual, o acesso inicial, o disco e a importação do backup.
+
 Este projeto agora pode rodar como painel web mobile-first no Render.
 
 ## Variáveis obrigatórias/recomendadas
@@ -37,7 +41,7 @@ Start:
 node dist/server.js
 ```
 
-No Render, o build/start vem do `Dockerfile`, porque o `render.yaml` usa `env: docker`.
+No Render, o build/start vem do `Dockerfile`, porque o `render.yaml` usa `runtime: docker`.
 
 ## Atualização de autenticação
 
@@ -88,7 +92,7 @@ O aplicativo grava `rota-mind-backup-v1/latest.rmbak` a cada intervalo e mantém
 
 1. Crie o novo Web Service com a mesma versão do aplicativo e configure as variáveis `R2_*`, incluindo a mesma `R2_BACKUP_ENCRYPTION_KEY`.
 2. Entre no painel como administrador, abra **Config** e aguarde o serviço ficar online.
-3. Em **Backup externo**, escolha o snapshot pelo nome, data e tamanho. O sistema pré-seleciona o maior arquivo para ajudar a localizar o backup antigo quando o serviço novo já criou uma cópia vazia. Confira a escolha antes de continuar e digite `RESTAURAR DADOS`.
+3. Em **Backup externo**, selecione explicitamente o snapshot anterior à migração pelo nome e pela data. O tamanho sozinho não garante que ele contém os dados corretos. Confira a escolha antes de continuar e digite `RESTAURAR DADOS`.
 4. A tela mostra o andamento ao listar, baixar, validar e extrair o snapshot. O status fica salvo para continuar visível após o reinício; em caso de erro, a causa aparece no painel e os dados atuais não são substituídos.
 5. Após a validação, o painel fecha conexões e reinicia o serviço com os dados do snapshot escolhido. O conteúdo que já existia no novo serviço é preservado no diretório `.cloud-restore-rollback-*` dentro de `DATA_DIR`.
 
