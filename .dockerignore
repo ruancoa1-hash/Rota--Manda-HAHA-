@@ -1,0 +1,11 @@
+# O build na raiz recebe somente os arquivos necessários do aplicativo.
+# Dados de clientes, credenciais, caches e node_modules ficam fora do contexto.
+**
+!bot-whatsapp-cliente-main/
+!bot-whatsapp-cliente-main/package.json
+!bot-whatsapp-cliente-main/package-lock.json
+!bot-whatsapp-cliente-main/.npmrc
+!bot-whatsapp-cliente-main/tsconfig.json
+!bot-whatsapp-cliente-main/vite.config.ts
+!bot-whatsapp-cliente-main/src/
+!bot-whatsapp-cliente-main/src/**

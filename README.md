@@ -4,6 +4,8 @@ Bot de rotas do WhatsApp com painel de clientes e administração, leitura de im
 preferências por bairro, validação de rotas, financeiro e backups criptografados.
 
 O código do aplicativo fica em `bot-whatsapp-cliente-main/`.
+O `Dockerfile` da raiz permite o deploy com o diretório raiz e o contexto Docker
+padrões do Render. Também existe um Dockerfile próprio na pasta do aplicativo.
 
 ## Subir do zero no Render
 

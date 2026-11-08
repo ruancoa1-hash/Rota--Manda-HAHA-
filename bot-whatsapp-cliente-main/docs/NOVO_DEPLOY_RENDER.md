@@ -51,9 +51,9 @@ configure:
 | Repository | `ruancoa1-hash/Rota--Manda-HAHA-` |
 | Branch | `main` |
 | Language / Runtime | `Docker` |
-| Root Directory | `bot-whatsapp-cliente-main` |
-| Dockerfile Path | `./Dockerfile`, relativo ao Root Directory |
-| Docker Build Context | `.`, relativo ao Root Directory |
+| Root Directory | vazio (raiz do repositório) |
+| Dockerfile Path | `./Dockerfile` |
+| Docker Build Context | `.` |
 | Health Check Path | `/api/ping` |
 | Auto-Deploy | `On Commit` |
 | Instance | plano pago com memória suficiente para os clientes |
@@ -63,6 +63,15 @@ configure:
 O Dockerfile já instala Node.js 24 e Tesseract e define o build e o comando de
 inicialização. Não configure comandos de um Static Site ou um serviço Node
 nativo nesse fluxo.
+
+Se o serviço já usa `bot-whatsapp-cliente-main` como Root Directory, o Dockerfile
+nessa pasta também funciona com caminho `./Dockerfile` e contexto `.`. Use o
+Dockerfile correspondente ao contexto escolhido.
+
+Se aparecer `failed to read dockerfile: open Dockerfile: no such file or directory`,
+confira **Settings > Build & Deploy**: Root Directory vazio, Dockerfile Path
+`./Dockerfile` e Docker Build Context `.`. Depois execute **Manual Deploy > Deploy
+latest commit**, incluindo a correção que adiciona o Dockerfile da raiz.
 
 Adicione estas variáveis em **Environment**:
 
