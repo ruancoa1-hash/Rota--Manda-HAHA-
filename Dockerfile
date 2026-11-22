@@ -3,7 +3,7 @@ FROM node:24-bookworm AS build
 
 WORKDIR /app
 COPY bot-whatsapp-cliente-main/package*.json ./
-RUN npm ci
+RUN npm ci --include=dev
 COPY bot-whatsapp-cliente-main/ ./
 RUN npm run build && npm prune --omit=dev
 
